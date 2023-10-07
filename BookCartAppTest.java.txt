@@ -1,0 +1,119 @@
+package exlatproject;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.*;
+
+public class BookCartAppTest {
+	
+	WebDriver driver;
+	objectRepository obj;
+	@BeforeMethod
+	public void LaunchSite() throws InterruptedException
+	{
+		System.setProperty("WebDriver.chrome.driver", "C:\\Users\\swarochromedriver-win64\\chromedriver.exe");
+
+		driver = new ChromeDriver();
+
+		Thread.sleep(2000);
+		driver.get("https://bookcart.azurewebsites.net/");
+		obj = new objectRepository(driver);
+		
+	}
+	
+	@Test(priority = 1)
+	public void Login() throws InterruptedException
+	{
+		obj.loginbtn();
+		obj.enterusername("gabbar@121");
+		Thread.sleep(2000);
+		obj.enterPassword("Kitneaadmithe@123");
+		Thread.sleep(2000);
+		obj.LoginBTn();	
+		Thread.sleep(2000);
+		obj.DownDrag();
+		Thread.sleep(2000);
+		obj.LoghOut();
+
+		
+
+
+	}
+	
+	
+	@Test(priority = 2)
+	public void TestAddTOCartBtn() throws InterruptedException
+	{
+		obj.AddtocartFIRSt();
+		Thread.sleep(2000);
+		obj.AddtocartSECOND();
+		Thread.sleep(2000);
+		obj.ShoppingCart();
+		Thread.sleep(2000);
+		obj.RemoveItems();
+	
+	}
+		
+	@Test(priority = 3 )
+	public void TestCategoriesFilter() throws InterruptedException
+	{
+		obj.Biography();
+		Thread.sleep(2000);
+		obj.Fantasy();
+		Thread.sleep(2000);
+		obj.Fiction();
+		
+	}	
+	@Test(priority =4 )
+	public void BackgroundFilter() throws InterruptedException
+	{
+		obj.BackgroundFilter();
+		Thread.sleep(2000);
+		obj.ChangeTheme();
+	}
+	
+	@Test(priority =5 )
+    public void PlaceOrder() throws InterruptedException
+    {
+		obj.loginbtn();
+		obj.enterusername("gabbar@121");
+		Thread.sleep(2000);
+		obj.enterPassword("Kitneaadmithe@123");
+		Thread.sleep(2000);
+		obj.LoginBTn();	
+		Thread.sleep(2000);
+		obj.AddtocartSECOND();
+		Thread.sleep(2000);
+
+		obj.checkCart();
+		Thread.sleep(2000);
+
+		obj.Checkout();
+		Thread.sleep(2000);
+		obj.EnterName("Swaroop");
+		Thread.sleep(2000);
+		obj.Addone("Nashik");
+		Thread.sleep(2000);
+		obj.AddSec("nashik");
+		Thread.sleep(2000);
+		obj.pincode("422012");
+		Thread.sleep(2000);
+		obj.StateName("Maharashtra");
+		Thread.sleep(2000);
+	
+
+		
+		
+    }
+
+@AfterMethod
+	 
+	public void CLosebrowser() throws InterruptedException
+	{
+		Thread.sleep(3000);
+		driver.close();
+	}
+
+	
+
+}
